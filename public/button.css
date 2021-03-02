@@ -47,7 +47,11 @@
   color: white;
 }
 .btn {
+<<<<<<< HEAD
   width: 100%;
+=======
+  /* width: 100%; */
+>>>>>>> lokDev
   background: #165558;
   border: 2px solid #4b8f82;
   color: white;

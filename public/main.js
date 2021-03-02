@@ -6,10 +6,17 @@ fetch('/tickets').then(res => {
   .then(respose => {
       respose.forEach(data => {
         document.getElementById('tableBody2').innerHTML += `<tr class = "card">
+<<<<<<< HEAD
         <td class="col">
         <span class = "${data.priority}-box"></span>
         </td>
         <td class="tableHeader col-10">
+=======
+        <td class="col-1">
+        <span class = "${data.priority}-box"></span>
+        </td>
+        <td class="tableHeader col-12">
+>>>>>>> lokDev
           <h4 class = "name">${data.name}</h4>
           <p class = "note">${data.ticketDetails}</p>
           <p class = "assigned">Assigned to ${data.assignedTo}</p>
@@ -29,10 +36,13 @@ fetch('/tickets').then(res => {
           <td class = " status col-2"> ${data.status}</td>
           <td class = "${data.priority} col-1">${data.priority}</td>
           <td class = "editButton col-2"><button class ="edit" title = "click to view detail" value = ${data._id}>View Detail <i class="glyphicon glyphicon-menu-right"></i></buton></td>
-        </tr> `
+        </tr>`
       });
   })
-
+fetch('/profile').then(res=> res.json()).then(data=>{
+  s_data= JSON.stringify(data)
+  sessionStorage.setItem("user",s_data) 
+})
 // lestening to button clicked
 if (document.addEventListener) {
   document.addEventListener("click", findClickedRowRemove, false);
@@ -53,7 +63,7 @@ function findClickedRowRemove(event) {
       if (element.nodeName === "BUTTON" && /edit/.test(element.className)) {
         console.log(element.value)
         sessionStorage.setItem("id",`${element.value}`);
-        window.location.href='/updateTicket.html'
+        window.location.href='./updateTicket.html'
         break;
       }
       element = element.parentNode;

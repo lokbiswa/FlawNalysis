@@ -59,6 +59,7 @@ function showHide(){
 
 function reload() {
     window.location = "/dashboard.html";
+    window.location = "./dashboard.html";
 }
 function submitUpdate(){
   let data = {
@@ -81,6 +82,7 @@ function submitUpdate(){
   .then(result => {
     console.log(result)
     window.location.href = "http://localhost:3030/confirmation.html"
+    window.location.href = "./confirmation.html"
     sessionStorage.setItem("message", "Your ticket was successfully updated.")
   })
 
@@ -96,7 +98,10 @@ function deleteTicket(){
   })
   .then(result =>{
     sessionStorage.setItem("message", "Ticket was Successfylly Deleted")
+<<<<<<< HEAD
     window.location.href='http://localhost:3030/confirmation.html';
 })
 
+}    window.location.href='./confirmation.html';
+})
 }

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="static/img/logoOnly.png" type="image/x-icon" />
+    <title>FlawNalysis</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/btn.css">
+    <link rel="stylesheet" href="static/index.css"  />
+    <link rel="stylesheet" href="static/navbar.css">
+  </head>
+  <body>
+    
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>                        
+          </button>
+          <a class="navbar-brand" href="#"><img id = "logo" src="static/img/logoLeft.png" alt="logo"></a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="/static/dashboard.html">Dashboard</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><%-loginStatus %></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <section class="showcase">
+      <div class="video-container">
+        <video src="static/img/bg.mov" autoplay muted loop></video>
+      </div>
+      <div class="card d-block" style = "background:transparent; max-width:1050px;">
+        <h1 class = "card-title">FlawNalysis</h1>
+        <h3 class = "card-body">
+          Providing an organized and aesthetically pleasing experience that
+          allows the user to navigate with ease and technicians to resolve
+          requests in a timely manner.
+          It will significantly reduce the amount of time and resources used.
+          Thus, providing additional time and resources to be used in other,
+          more beneficial, matters.
+        </3>
+        <a href="/login" class="btn-primary btn d-block mx-auto my-5" style = "width: fit-content !important;">Log in or Sign up</a>
+      </div>
+    </section>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+
+</html>
