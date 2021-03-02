@@ -203,13 +203,11 @@ color:rgb(131, 131, 131);
   display:block !important;
   background: transparent !important;
 }
-
 .col-1{
   width:4% !important;
 }
 
 body, html{
-
   width:100%;
   overflow:hidden;
   min-width:0;

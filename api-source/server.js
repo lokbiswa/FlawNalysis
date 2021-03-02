@@ -22,9 +22,6 @@ app.use(
 
 // app.use(express.static('public'))
 
-
-app.use(express.static('public'))
-require('dotenv').config();
 // if this file is hosted (Heroku), use the port number they provide, otherwise use port 8080 (will default here for local hosting)
 port = process.env.PORT || 3000;
 // configure body parser

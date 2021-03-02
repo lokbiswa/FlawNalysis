@@ -6,17 +6,10 @@ fetch('/tickets').then(res => {
   .then(respose => {
       respose.forEach(data => {
         document.getElementById('tableBody2').innerHTML += `<tr class = "card">
-<<<<<<< HEAD
-        <td class="col">
-        <span class = "${data.priority}-box"></span>
-        </td>
-        <td class="tableHeader col-10">
-=======
         <td class="col-1">
         <span class = "${data.priority}-box"></span>
         </td>
         <td class="tableHeader col-12">
->>>>>>> lokDev
           <h4 class = "name">${data.name}</h4>
           <p class = "note">${data.ticketDetails}</p>
           <p class = "assigned">Assigned to ${data.assignedTo}</p>
