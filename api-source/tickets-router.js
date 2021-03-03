@@ -28,10 +28,20 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client 
 
   // Get Methods
   router.get('/', requiresAuth(), (req, res) => {
-    data = db.collection('tickets').find().sort( { requestedDate : -1, name : 1} ).toArray();
-    data.then(result => res.send(result))
-      .catch(error => console.error(error));
+    // check role
+    let role = (req.oidc.user["https://useroles"]) ?  req.oidc.user["https://useroles"][0] : 'user';
+    if(role === 'admin') {
+      data = db.collection('tickets').find().sort( { requestedDate : -1, name : 1} ).toArray();
+      data.then(result => res.send(result))
+        .catch(error => console.error(error));
+    }else{
+      data = db.collection('tickets').find({name: req.oidc.user.name}).sort( { requestedDate : -1, name : 1} ).toArray();
+      data.then(result => res.send(result))
+        .catch(error => console.error(error));
+    }
   })
+
+  // get ticket by id
   router.get('/:id', requiresAuth(), (req, res) => {
     id = req.params.id
     o_id = ObjectID(`${id}`)

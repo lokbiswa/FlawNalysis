@@ -48,8 +48,8 @@
           It will significantly reduce the amount of time and resources used.
           Thus, providing additional time and resources to be used in other,
           more beneficial, matters.
-        </3>
-        <a href="/login" class="btn-primary btn d-block mx-auto my-5" style = "width: fit-content !important;">Log in or Sign up</a>
+        </h3>
+        <%-status%>
       </div>
     </section>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -59,6 +59,7 @@
       fetch('/user').then(res=> res.json()).then(data=>{
         s_data= JSON.stringify(data)
         sessionStorage.setItem("user",s_data) 
+        console.log(s_data)
       })
     </script>
   </body>

@@ -36,11 +36,13 @@ app.use('/tickets', tickets)
 app.get('/',(req, res)=>{
   if(req.oidc.isAuthenticated()){
     let status = `<a href="/profile">${req.oidc.user.name}</a>`
-    res.render("index.ejs", {loginStatus:status});
+    let link = `<a href="/logout" class="btn-primary btn d-block mx-auto my-5" style = "width: fit-content !important;">Click to Logout</a>`
+    res.render("index.ejs", {loginStatus: status, status:link});
   }
   else{
+    let link = `<a href="/login" class="btn-primary btn d-block mx-auto my-5" style = "width: fit-content !important;">Log in or Sign up</a>`
     let status = `<a href="/login"><span class="glyphicon glyphicon-log-in"></span> login</a>`
-    res.render("index.ejs", {loginStatus: status});
+    res.render("index.ejs", {loginStatus: status, status:link});
   }
 })
 
