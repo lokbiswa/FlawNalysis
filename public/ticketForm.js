@@ -1,7 +1,7 @@
 let user = JSON.parse(sessionStorage.getItem("user"))
 console.log(user)
-document.getElementById("form_name").value = user.firstName;
-document.getElementById("form_lastname").value = user.lastName;
+document.getElementById("form_name").value = user.given_name;
+document.getElementById("form_lastname").value = user.family_name;
 document.getElementById("form_email").value = user.email;
 
 

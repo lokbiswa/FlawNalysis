@@ -32,7 +32,7 @@ fetch('/tickets').then(res => {
         </tr>`
       });
   })
-fetch('/profile').then(res=> res.json()).then(data=>{
+fetch('/user').then(res=> res.json()).then(data=>{
   s_data= JSON.stringify(data)
   sessionStorage.setItem("user",s_data) 
 })

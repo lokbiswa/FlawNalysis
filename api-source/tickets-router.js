@@ -3,6 +3,7 @@ const router = express.Router();
 const bodyParser = require('body-parser')
 const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require("bson-objectid");
+const { requiresAuth } = require('express-openid-connect');
 // const ticket = require('../models/ticket');
 require('dotenv').config();
 // getting credential to connect to db
@@ -26,12 +27,12 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client 
   // Add all the CRUD here!
 
   // Get Methods
-  router.get('/', (req, res) => {
-    data = db.collection('tickets').find().toArray();
+  router.get('/', requiresAuth(), (req, res) => {
+    data = db.collection('tickets').find().sort( { requestedDate : -1, name : 1} ).toArray();
     data.then(result => res.send(result))
       .catch(error => console.error(error));
   })
-  router.get('/:id', (req, res) => {
+  router.get('/:id', requiresAuth(), (req, res) => {
     id = req.params.id
     o_id = ObjectID(`${id}`)
     data = db.collection('tickets').findOne({ _id: o_id });
@@ -40,7 +41,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client 
   })
   // Post Method
 
-  router.post('/', (req, res) => {
+  router.post('/', requiresAuth(),  (req, res) => {
     data = db.collection('tickets').insertOne(req.body);
     data.then(result => res.redirect(301, '/'))
       .catch(error => console.error(error));
@@ -48,7 +49,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client 
 
   //Put Method
 
-  router.put('/:id', (req, res) => {
+  router.put('/:id', requiresAuth(),  (req, res) => {
     id = req.params.id
     let o_id = ObjectID(`${id}`)
     console.log(req.body)
@@ -74,7 +75,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client 
   })
 
   //Delete Method
-  router.delete('/:id', (req, res) => {
+  router.delete('/:id', requiresAuth(), (req, res) => {
     id = req.params.id
     o_id = ObjectID(`${id}`)
     console.log(o_id)

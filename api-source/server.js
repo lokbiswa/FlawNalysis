@@ -67,6 +67,9 @@ app.get('/static/updateTicket.html', requiresAuth(),(req, res)=>{
 app.get('/profile', requiresAuth(),(req, res)=>{
   res.render("profile.ejs", {user: req.oidc.user, pic: req.oidc.user.picture})
 })
+app.get('/user', requiresAuth(), (req, res)=>{
+  res.json(req.oidc.user)
+})
 // localhost
 app.listen(port, function () {
   console.log(`listening on: http://localhost:${port}`)
