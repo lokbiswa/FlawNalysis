@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require("bson-objectid");
 const { requiresAuth } = require('express-openid-connect');
+const Tech = require('./tech')
 // const ticket = require('../models/ticket');
 require('dotenv').config();
 // getting credential to connect to db
@@ -52,10 +53,12 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client 
   // Post Method
 
   router.post('/', requiresAuth(),  (req, res) => {
-    data = db.collection('tickets').insertOne(req.body);
-    data.then(result => res.redirect(301, '/'))
+      data =  assignTech(req.body)
+      console.log(data)
+      data = db.collection('tickets').insertOne(req.body);
+      data.then(result => res.redirect(301, '/'))
       .catch(error => console.error(error));
-  })
+  });
 
   //Put Method
 
@@ -100,5 +103,19 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client 
   })
 })
   .catch(error => console.error(error))
+
+function assignTech(reqBody){
+  let assignedTo = Tech[reqBody.type].name 
+  let {name, status, type, priority, ticketDetails, requestedDate} = reqBody
+  return data = {
+    name,
+    status,
+    type,
+    priority,
+    ticketDetails,
+    requestedDate,
+    assignedTo
+  }
+}
 
 module.exports = router
