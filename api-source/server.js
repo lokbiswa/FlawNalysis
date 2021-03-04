@@ -23,7 +23,7 @@ app.use(
 // app.use(express.static('public'))
 
 // if this file is hosted (Heroku), use the port number they provide, otherwise use port 8080 (will default here for local hosting)
-port = process.env.PORT || 3000;
+port = process.env.PORT || 8080;
 // configure body parser
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
