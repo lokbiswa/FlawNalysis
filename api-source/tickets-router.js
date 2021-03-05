@@ -131,7 +131,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client 
 
 function assignTech(reqBody){
   let assignedTo = Tech[reqBody.type].name 
-  let { name, status, type, priority, ticketDetails, email } = reqBody
+  let { name, status, type, priority, ticketDetails, email, requestedDate } = reqBody
   return data = {
     name,
     status,
@@ -139,7 +139,8 @@ function assignTech(reqBody){
     priority,
     ticketDetails,
     assignedTo,
-    email
+    email,
+    requestedDate
   }
 }
 
