@@ -11,7 +11,7 @@ const tech= {
         name:"Cami",
         email:""
     },
-    Others: {
+    Other: {
         name:"Lok",
         email:""
     }
