@@ -30,7 +30,6 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client 
   // Get Methods
   router.get('/', requiresAuth(), (req, res) => {
     // check role
-    console.log(req.oidc.user)
     let role = (req.oidc.user.nickname) ?  req.oidc.user.nickname : 'user';
     if(role === 'admin') {
       data = db.collection('tickets').find().sort( { status: -1 ,_id : -1} ).toArray();

@@ -59,7 +59,8 @@ app.get('/',(req, res)=>{
   else{
     let link = `<a href="/login" class="btn-primary btn d-block mx-auto my-5" style = "width: fit-content !important;">Log in or Sign up</a>`
     let status = `<a href="/login"><span class="glyphicon glyphicon-log-in"></span> login</a>`
-    res.render("index.ejs", {loginStatus: status, status:link});
+    mobileLinks = ['','']
+    res.render("index.ejs", {loginStatus: status, status:link, mobile: mobileLinks});
   }
 })
 // dashboard
