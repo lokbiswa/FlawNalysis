@@ -24,7 +24,7 @@ a {
 /* font definitions */
 h1 {
 	font-weight: 300;
-	font-size: 50px;
+	font-size: 70px;
 	line-height: 1.2;
 	margin-bottom: 45px;
 }
@@ -162,4 +162,17 @@ html,
 body {
 	height: 100%;
 	overflow: hidden;
+}
+@media (max-width: 445px) {
+	h1 {
+		font-weight: 300;
+		font-size: 5rem;
+		line-height: 1.2;
+		margin-bottom: 45px;
+	}
+	h3 {
+		font-weight: 200;
+		font-size: 1.5rem;
+		line-height: 1.75;
+	}
 }
