@@ -24,7 +24,7 @@ function submitForm() {
         email: email,
         type: type,
         ticketDetails: ticketDetails,
-        status: 'pending',
+        status: 'Pending',
         priority: priority,
         requestedDate: date
     }
