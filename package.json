@@ -31,7 +31,7 @@
     "mongodb": "^3.6.4",
     "mongoose": "^5.11.17",
     "nodemon": "^2.0.7",
-    "npm": "^7.6.0",
+    "npm": "^7.13.0",
     "parser": "^0.1.4",
     "passport": "^0.4.1",
     "passport-auth0": "^1.4.0"
