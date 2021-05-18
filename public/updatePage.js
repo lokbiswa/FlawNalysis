@@ -25,8 +25,7 @@ fetch(url).then(res => {
     status.value = result.status|| "";
     priority.value = result.priority|| "";
     selection.value = result.type || "";
-
-
+    sessionStorage.setItem("requestedDate", result.requestedDate)
 })
 
 // to tuggle btw disable and unable to limit error
@@ -58,7 +57,7 @@ function showHide(){
 }
 
 function reload() {
-    window.location = "./dashboard.html";
+    window.location = "./dashboard";
 }
 function submitUpdate(){
   let data = {
@@ -68,7 +67,8 @@ function submitUpdate(){
     assignedTo: assignedTO.value,
     status: status.value,
     priority: priority.value,
-    ticketDetails: textArea.value
+    ticketDetails: textArea.value,
+    requestedDate: sessionStorage.getItem("requestedDate")
   }
   console.log(data)
   id = sessionStorage.getItem('id');
@@ -80,7 +80,7 @@ function submitUpdate(){
   }).then(res => res.json())
   .then(result => {
     console.log(result)
-    window.location.href = "./confirmation.html"
+    window.location.href = "./confirmation"
     sessionStorage.setItem("message", "Your ticket was successfully updated.")
   })
 
@@ -96,7 +96,7 @@ function deleteTicket(){
   })
   .then(result =>{
     sessionStorage.setItem("message", "Ticket was Successfylly Deleted")
-    window.location.href='./confirmation.html';
+    window.location.href='./confirmation';
 })
 
 }

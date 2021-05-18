@@ -8,12 +8,12 @@ const Tech = require('./tech')
 // const ticket = require('../models/ticket');
 require('dotenv').config();
 // getting credential to connect to db
-username = process.env.USER
+username = process.env.USERNAME
 password = process.env.PASSWORD
 connectionString = `mongodb+srv://${username}:${password}@cluster0.d0ygw.mongodb.net/tickets?retryWrites=true&w=majority`
 // port # from .env
 
-
+console.log(connectionString)
 // connection to mongoDB
 MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client => {
 
@@ -30,13 +30,35 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client 
   // Get Methods
   router.get('/', requiresAuth(), (req, res) => {
     // check role
-    let role = (req.oidc.user["https://useroles"]) ?  req.oidc.user["https://useroles"][0] : 'user';
+    let role = (req.oidc.user.nickname) ?  req.oidc.user.nickname : 'user';
     if(role === 'admin') {
-      data = db.collection('tickets').find().sort( { requestedDate : -1, name : 1} ).toArray();
+      data = db.collection('tickets').find().sort( { status: -1 ,_id : -1} ).toArray();
       data.then(result => res.send(result))
         .catch(error => console.error(error));
-    }else{
-      data = db.collection('tickets').find({name: req.oidc.user.name}).sort( { requestedDate : -1, name : 1} ).toArray();
+    }
+    else if(req.oidc.user.given_name === Tech.Phone.name){
+      data = db.collection('tickets').find({type: "Phone"}).sort( { status: -1 ,_id : -1} ).toArray();
+      data.then(result => res.send(result))
+        .catch(error => console.error(error));
+    }
+    else if(req.oidc.user.given_name === Tech.Email.name){
+      data = db.collection('tickets').find({type: "Email"}).sort( { status: -1 ,_id : -1} ).toArray();
+      data.then(result => res.send(result))
+        .catch(error => console.error(error));
+    }
+    else if(req.oidc.user.given_name === Tech.Computer.name){
+      data = db.collection('tickets').find({type: "Computer"}).sort( { status: -1 ,_id : -1} ).toArray();
+      data.then(result => res.send(result))
+        .catch(error => console.error(error));
+    }
+    else if(req.oidc.user.given_name == Tech.Other.name){
+      data = db.collection('tickets').find({type: "Other"}).sort( { status: -1 ,_id : -1} ).toArray();
+      data.then(result => res.send(result))
+        .catch(error => console.error(error));
+    }
+    
+    else{
+      data = db.collection('tickets').find({name: req.oidc.user.name}).sort( { status : -1, _id : -1} ).toArray();
       data.then(result => res.send(result))
         .catch(error => console.error(error));
     }
@@ -53,9 +75,9 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client 
   // Post Method
 
   router.post('/', requiresAuth(),  (req, res) => {
-      data =  assignTech(req.body)
-      console.log(data)
-      data = db.collection('tickets').insertOne(req.body);
+      ticketData =  assignTech(req.body)
+      console.log(req.body.type)
+      data = db.collection('tickets').insertOne(ticketData);
       data.then(result => res.redirect(301, '/'))
       .catch(error => console.error(error));
   });
@@ -65,16 +87,19 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client 
   router.put('/:id', requiresAuth(),  (req, res) => {
     id = req.params.id
     let o_id = ObjectID(`${id}`)
-    console.log(req.body)
+    ticketData = assignTech(req.body)
+    console.log(ticketData)
     data = db.collection('tickets').findOneAndUpdate(
       { _id: o_id },
       {
         $set: {
-          status: req.body.status,
-          type: req.body.type,
-          priority: req.body.priority,
-          assignedTo: req.body.assignedTo,
-          ticketDetails: req.body.ticketDetails
+          name: ticketData.name,
+          type: ticketData.type,
+          assignedTo: ticketData.assignedTo,
+          ticketDetails: ticketData.ticketDetails,
+          status: ticketData.status,
+          priority: ticketData.priority,
+          email:ticketData.email
         }
       },
       {
@@ -106,15 +131,16 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client 
 
 function assignTech(reqBody){
   let assignedTo = Tech[reqBody.type].name 
-  let {name, status, type, priority, ticketDetails, requestedDate} = reqBody
+  let { name, status, type, priority, ticketDetails, email, requestedDate } = reqBody
   return data = {
     name,
     status,
     type,
     priority,
     ticketDetails,
-    requestedDate,
-    assignedTo
+    assignedTo,
+    email,
+    requestedDate
   }
 }
 

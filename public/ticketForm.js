@@ -6,7 +6,7 @@ document.getElementById("form_email").value = user.email;
 
 
 function reload() {
-    window.location = "./dashboard.html";
+    window.location = "./dashboard";
 }
 
 function submitForm() {
@@ -24,8 +24,7 @@ function submitForm() {
         email: email,
         type: type,
         ticketDetails: ticketDetails,
-        assignedTo: 'pending',
-        status: 'pending',
+        status: 'Pending',
         priority: priority,
         requestedDate: date
     }
@@ -37,7 +36,7 @@ function submitForm() {
         body: JSON.stringify(data)
     })
         .then((res) => {
-            window.location.href = "./confirmation.html"
+            window.location.href = "./confirmation"
 
 
             // try that...

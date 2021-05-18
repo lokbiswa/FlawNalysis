@@ -11,15 +11,42 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
         <link rel="stylesheet" href="ticketForm.css">
+        <link rel="stylesheet" href="navbar.css">
     </head>
 <body>
+  <nav class="navbar navbar-inverse bg-dark">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+        </button>
+        <a class="navbar-brand" href="./"><img id = "logo" src="img/logoLeft.png" alt="logo"></a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li><a href="/">Home</a></li>
+          <li><a href="./dashboard">Dashboard</a></li>
+          <li><a href="/create-ticket">Create Ticket</a></li>
+          <li class="active"><a href="#">View Ticket</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><%-loginStatus %></li>
+          <li class = 'mobile-link'><%-mobile[0]%></li>
+          <li class = 'mobile-link'><%-mobile[1]%></li>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
     <div class="container">
         <div class="row">
           <div class="col-lg-7 mx-auto">
             <div class="card my-auto mx-auto p-4 bg-info" id ="vertical-center">
               <div class="card-body bg-info">
                 <div class="container bg-info">
-                  <form id="contact-form" role="form" onsubmit="submitUpdate(); return false;">
+                  <form id="contact-form"  onsubmit="submitUpdate(); return false;">
                     <div class="controls bg-info">
                       <div class="topRow">
                         <h3 class = "text-center pb-3 mx-5" style="color:rgba(255, 255, 255, 0.74); width:100%;">Please Click on the Pencil Icon to Update Ticket</h3>
@@ -76,9 +103,9 @@
                         </div>
                         <div class="col-md-6">
                           <div class="form-group">
-                            <label for="form_need"
-                              >Please specify your need *</label
-                            >
+                            <label for="form_need">
+                              Please specify your need *
+                            </label>
                             <select
                               id="form_need"
                               name="need"
@@ -105,7 +132,7 @@
                             <input
                               id="form_assigned"
                               title = "click on pencil to edit"
-                              type="name"
+                              type="text"
                               name="name"
                               class="form-control"
                               placeholder="Josh Wagner"
@@ -130,7 +157,6 @@
                                 --Select Status--
                               </option>
                               <option>Pending</option>
-                              <opt</option>
                               <option>In Progress</option>
                               <option>Completed</option>
                             </select>
@@ -153,7 +179,6 @@
                                 --Select Priority--
                               </option>
                               <option>High</option>
-                              <opt</option>
                               <option>Normal</option>
                               <option>Low</option>
                             </select>
@@ -193,13 +218,18 @@
                           </div>
                         </div>
                     </div>
+                  </div>
                   </form>
                 </div>
               </div>
             </div>
             <!-- /.8 -->
           </div>
-<script src="./updatepage.js">
-</script>
+        </div>
+      </div>
+<script src="./updatePage.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

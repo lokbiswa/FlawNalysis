@@ -24,29 +24,31 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>                        
         </button>
-        <a class="navbar-brand" href="#"><img id = "logo" src="img/logoLeft.png" alt="logo"></a>
+        <a class="navbar-brand" href="./"><img id = "logo" src="img/logoLeft.png" alt="logo"></a>
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
           <li><a href="/">Home</a></li>
           <li class="active"><a href="#">Dashboard</a></li>
-          <li><a href="ticketForm.html">Create Ticket</a></li>
+          <li><a href="./create-ticket">Create Ticket</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><li><%-loginStatus %></li></li>
+          <li><%-loginStatus %></li>
+          <li class = 'mobile-link'><%-mobile[0]%></li>
+          <li class = 'mobile-link'><%-mobile[1]%></li>
         </ul>
-
+      </div>
       </div>
     </nav>
     <div class="container">
       <div class="ticketDisplay">
         <div class="label-button d-none d-md-flex">
           <h2 class = "heading">Tickets</h2>
-          <a href="ticketForm.html" title = "click to create ticket" class="add btn btn-primary">Create Ticket</a>
+          <a href="./create-ticket" title = "click to create ticket" class="add btn btn-primary">Create Ticket</a>
         </div>
         <div class="label-button d-flex d-md-none">
           <h2 class = "heading">Tickets</h2>
-          <a href="ticketForm.html" title = "click to create ticket"><i class='fas fa-plus' style = "font-size: 25px;"></i></a>
+          <a href="./create-ticket" title = "click to create ticket"><i class='fas fa-plus' style = "font-size: 25px;"></i></a>
         </div>
         <div id="tables">
           <div class="table-container">
@@ -56,8 +58,8 @@
                   <th class="tableHeader col-5">Ticket Details</th>
                   <th class="tableHeader col-2">Assigned To</th>
                   <th class="tableHeader col-2">Status</th>
-                  <th class="tableHeader c0l-2">Priority</th>
-                  <th class="tableHeader c0l-1"></th>
+                  <th class="tableHeader col-1">Priority</th>
+                  <th class="tableHeader col-2"></th>
                 </tr>
               </thead>
               <tbody id="tableBody"></tbody>
